@@ -28,38 +28,68 @@ int main() {
     float densidadeB = populacaoB / areaB;
     float pibPerCapitaB = pibB / populacaoB;
     
-    char *atributoComparado = "População";
+    // --- MENU INTERATIVO (REQUISITO: Nível Aventureiro) ---
+    int escolha;
+    
+    printf("Super Trunfo - Batalha de Cidades\n");
+    printf("Escolha o atributo para a comparacao:\n");
+    printf("1 - Populacao\n");
+    printf("2 - Area\n");
+    printf("3 - PIB\n");
+    printf("4 - Densidade Demografica\n");
+    printf("5 - PIB per capita\n");
+    printf("6 - Pontos Turisticos\n");
+    printf("Digite o numero da sua escolha: ");
+    scanf("%d", &escolha);
+
+    char *atributoComparado;
     float valorA, valorB;
     
-    if (strcmp(atributoComparado, "População") == 0) {
-        valorA = populacaoA;
-        valorB = populacaoB;
-    } else if (strcmp(atributoComparado, "Área") == 0) {
-        valorA = areaA;
-        valorB = areaB;
-    } else if (strcmp(atributoComparado, "PIB") == 0) {
-        valorA = pibA;
-        valorB = pibB;
-    } else if (strcmp(atributoComparado, "Densidade Populacional") == 0) {
-        valorA = densidadeA;
-        valorB = densidadeB;
-    } else if (strcmp(atributoComparado, "PIB per capita") == 0) {
-        valorA = pibPerCapitaA;
-        valorB = pibPerCapitaB;
-    } else if (strcmp(atributoComparado, "Pontos Turisticos") == 0) {
-        valorA = pontosTuristicosA;
-        valorB = pontosTuristicosB;
+    switch (escolha) {
+        case 1:
+            atributoComparado = "População";
+            valorA = populacaoA;
+            valorB = populacaoB;
+            break;
+        case 2:
+            atributoComparado = "Área";
+            valorA = areaA;
+            valorB = areaB;
+            break;
+        case 3:
+            atributoComparado = "PIB";
+            valorA = pibA;
+            valorB = pibB;
+            break;
+        case 4:
+            atributoComparado = "Densidade Demografica";
+            valorA = densidadeA;
+            valorB = densidadeB;
+            break;
+        case 5:
+            atributoComparado = "PIB per capita";
+            valorA = pibPerCapitaA;
+            valorB = pibPerCapitaB;
+            break;
+        case 6:
+            atributoComparado = "Pontos Turisticos";
+            valorA = pontosTuristicosA;
+            valorB = pontosTuristicosB;
+            break;
+        default:
+            printf("Escolha invalida. O jogo sera encerrado.\n");
+            return 1;
     }
-
+    
     // --- LÓGICA DE COMPARAÇÃO E RESULTADO (REQUISITO) ---
-    printf("Comparacao de cartas (Atributo: %s):\n", atributoComparado);
-    printf("Carta %c - %s(%s): %.2f\n", cartaA, cidadeA, estadoA, valorA);
-    printf("Carta %c - %s(%s): %.2f\n", cartaB, cidadeB, estadoB, valorB);
+    printf("\n--- Comparacao de cartas (Atributo: %s) ---\n", atributoComparado);
+    printf("Carta %c - %s (%s): %.2f\n", cartaA, cidadeA, estadoA, valorA);
+    printf("Carta %c - %s (%s): %.2f\n", cartaB, cidadeB, estadoB, valorB);
 
     printf("Resultado: ");
     
-    // Verificando se o atributo é "Densidade Populacional"
-    if (strcmp(atributoComparado, "Densidade Populacional") == 0) {
+    // Utilizando if-else aninhado para as regras de comparacao
+    if (strcmp(atributoComparado, "Densidade Demografica") == 0) {
         // Para densidade, o menor valor vence
         if (valorA < valorB) {
             printf("Carta %c (%s) venceu!\n", cartaA, cidadeA);
@@ -78,6 +108,6 @@ int main() {
             printf("Empate!\n");
         }
     }
-
+ 
     return 0;
 }
